@@ -1,0 +1,115 @@
+<div id="employeInfo" ng-controller="supprimerEmployeCtrl">
+	<div ng-controller="travailCtrl as tCtrl">
+		<div ng-controller="supprimerTravailCtrl">
+			<div>
+				<a onclick="window.location.href='#/employe'" class="no-wrap">
+					<span class="glyphicon glyphicon-chevron-left backward"></span>
+				</a>
+			</div>
+			
+			<table class="table table-bordered table-condensed table-striped table-hover">
+				<caption class="text-center text-uppercase">
+				<h3><b>Informations</b></h3>
+				</caption>
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th>Nom</th>
+						<th class="text-center">Taux (Ar/h)</th>
+						<th class="text-center">Entreprise</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center middle" ng-click="ctrl.linkEdit(info.numero)">{{info.numero}}</td>
+						<td ng-click="ctrl.linkEdit(info.numero)">
+							<div class="clearfix">
+								{{info.nom | uppercase}}
+							</div>
+							<div>
+								{{info.adresse}}
+							</div>
+						</td>
+						<td class="middle text-right pad" ng-click="ctrl.linkEdit(info.numero)">{{info.taux | number}}</td>
+						<td class="middle text-center" ng-click="ctrl.linkEdit(info.numero)">{{info.entreprise}}</td>
+						<td class="middle text-center">
+							<!--a href="#/employe/{{info.numero}}" ><span class="glyphicon glyphicon-edit"></span></a>
+							&nbsp;&nbsp;&nbsp;-->
+							<a href="#/employe" data-toggle='modal' data-target='#confirm' ng-click="load(info, $event)"><span class="glyphicon glyphicon-remove"></span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-bordered table-condensed table-striped table-hover">
+				<caption class="text-center text-uppercase">
+				<h3><b>Heures de travail <span class="badge align-top">{{ travail.length }}</span></b></h3>
+				<a href="#/travailAdd/{{info.numero}}" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-plus"></i>  Ajouter</a>
+				</caption>
+				<thead>
+					<th class="text-center">#</th>
+					<th class="text-center">Nombre d'heures (h)</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="t in travail">
+						<td class="text-center" ng-click="tCtrl.linkEdit(info.numero, t.rowid)">{{ travail.indexOf(t)+1 }}</td>
+						<td class="text-center" ng-click="tCtrl.linkEdit(info.numero, t.rowid)">{{ t.nbheures }}</td>
+						<td class="middle text-center">
+							<a href="#/employe" data-toggle='modal' data-target='#confirmTrav' ng-click="load(t, $event)"><span class="glyphicon glyphicon-remove"></span></a>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+				<tr>
+					<th class="text-center">Total</th>
+					<th class="text-center active">{{ travail.somme }}</th>
+				</tr>
+				</tfoot>
+			</table>
+			<table class="table table-bordered table-condensed table-striped table-hover">
+				<caption class="text-center text-uppercase">
+				<h3><b>Salaire</b></h3>
+				</caption>
+				<thead>
+					<th class="text-center">
+						{{ info.taux * travail.somme | currency: 'Ar.  ' }}
+					</th>
+				</thead>
+			</table>
+			
+			<div class="modal fade" id="confirm" tamodelex="-1" role="dialog" aria-labelledby="confirmTitre" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="confirmTitre">Suppression</h4>
+						</div>
+						<div class="modal-body">
+							Voulez-vous vraiment supprimer cet employ&eacute;?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='deleteEmploye()'>Supprimer</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="confirmTrav" tamodelex="-1" role="dialog" aria-labelledby="confirmTitre" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="confirmTitre">Suppression</h4>
+						</div>
+						<div class="modal-body">
+							Voulez-vous vraiment supprimer cette heure de travail?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='deleteTravail()'>Supprimer</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

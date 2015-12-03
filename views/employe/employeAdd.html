@@ -1,0 +1,48 @@
+
+<div id='employeAdd'>
+
+	<div>
+		<a onclick="history.back()" class="no-wrap">
+			<span class="glyphicon glyphicon-chevron-left backward"></span>
+		</a>
+	</div>
+
+	<h3><b>Nouveau </b></h3>
+
+	<form ng-submit='ctrl.insertEmploye()'>
+
+		<div>
+			<button type='submit' class="validate btn btn-link">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label' for="numero">Numero</label>
+			<input type="text" ng-model='add.numero' id='numero' class='form-control' placeholder='Entrer numero' required />
+		</div>
+		<div class="form-group">
+			<label class='control-label' for="nom">Nom</label>
+			<input type="text" ng-model='add.nom' id='nom' class='form-control' placeholder='Entrer nom' required />
+		</div>
+		<div class="form-group">
+			<label class='control-label' for="adresse">Adresse</label>
+			<input type="text" ng-model='add.adresse' id='adresse' class='form-control' placeholder='Entrer adresse' required />
+		</div>
+		<div class="form-group">
+			<label class='control-label' for="taux">Taux</label>
+			<div class="input-group">
+				<div class="input-group-addon">Ar/h</div>
+				<input type="text" ng-model='add.taux' id='taux' class='form-control' placeholder='Entrer taux' required />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="entreprise">Entreprise</label>
+			<select class="form-control" id="entreprise" ng-model="add.entrepriseID" required>
+				<option value="" selected disabled>Choisir une entreprise:</option>
+				<option ng-repeat="entreprise in entreprises" value="{{entreprise.numero}}" ng-bind="entreprise.design"></option>
+			</select>
+		</div>
+	</form>
+</div>
+

@@ -1,0 +1,32 @@
+<div id="entrepriseEdit">
+	
+	<div>
+		<a onclick="history.back()" class="no-wrap">
+			<span class="glyphicon glyphicon-chevron-left backward"></span>
+		</a>
+	</div>
+	<h3><b>Modifier </b></h3>
+	
+	<form ng-submit="editEntreprise()">
+		
+		<div>
+			<button type="submit" class="btn btn-link">
+				<span class="glyphicon glyphicon-ok validate"></span>
+			</button>
+		</div>
+		
+		<div class="form-group">
+			<label for="numero" class="control-label">Numero</label>
+			<div>
+				<input type="text" ng-model='edit.numero' class="form-control" id="numero" disabled>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="design" class="control-label">Désignation</label>
+			<div>
+				<input type="text" ng-model='edit.design' class="form-control" id="design" required>
+			</div>
+		</div>
+	</form>
+</div>

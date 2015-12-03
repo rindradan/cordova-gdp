@@ -1,0 +1,30 @@
+
+<div id='entrepriseAdd'>
+
+	<div>
+		<a onclick="history.back()" class="no-wrap">
+			<span class="glyphicon glyphicon-chevron-left backward"></span>
+		</a>
+	</div>
+
+	<h3><b>Nouveau </b></h3>
+
+	<form ng-submit='ctrl.insertEntreprise()'>
+
+		<div>
+			<button type='submit' class="validate btn btn-link">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+		</div>
+
+		<div class="form-group">
+			<label class='control-label' for="numero">Numero</label>
+			<input type="text" ng-model='add.numero' id='numero' class='form-control' placeholder='Entrer numero' required />
+		</div>
+		<div class="form-group">
+			<label class='control-label' for="design">Désignation</label>
+			<input type="text" ng-model='add.design' id='design' class='form-control' placeholder='Entrer désignation' required />
+		</div>
+	</form>
+</div>
+

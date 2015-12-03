@@ -1,0 +1,45 @@
+<div ng-controller="supprimerEntrepriseCtrl">
+	<div id='entrepriseList'>
+		
+		<table class="table table-condensed table-striped table-hover">
+			<caption class="text-center text-uppercase">
+			<h3><b>Liste des entreprises</b></h3>
+			<a href="#/entrepriseAdd" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-plus"></i>  Nouvelle entreprise</a>
+			</caption>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>D&eacute;signation</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='entreprise in entreprises'>
+					
+					<td class="middle" ng-click="ctrl.linkEdit(entreprise.numero)">{{entreprise.numero}}</td>
+					<td class="middle" ng-click="ctrl.linkEdit(entreprise.numero)">{{entreprise.design}}</td>
+					<td class="middle text-center">
+						<a href="#/entreprise" data-toggle='modal' data-target='#confirm' ng-click="load(entreprise, $event)"><span class="glyphicon glyphicon-remove"></span></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="confirmTitre" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="confirmTitre">Suppression</h4>
+				</div>
+				<div class="modal-body">
+					Voulez-vous vraiment supprimer cette entreprise?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click='deleteEntreprise()'>Supprimer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
